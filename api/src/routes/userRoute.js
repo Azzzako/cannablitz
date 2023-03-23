@@ -26,13 +26,37 @@ router.get('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
     try {
         const { id } = req.params
-        const users =  await User.findAllUsers()
+        const users = await User.findAllUsers()
         if (id) {
             userById = users.filter(user => user.id == id)
             res.status(200).json(userById)
         }
     } catch (error) {
         console.log(error);
+    }
+})
+
+router.put('/:userId', async (req, res) => {
+    try {
+        const userId = req.params.userId
+        const { firstName, lastName, email } = req.body;
+        const updatedUser = await User.findOne({ where: { id: userId } })
+
+        if (!updatedUser) {
+            res.status(404).json({ msg: 'No existe el usuario con ese ID' })
+        }
+
+        updatedUser.firstName = firstName
+        updatedUser.lastName = lastName
+        updatedUser.email = email
+
+        await updatedUser.save()
+
+        res.status(200).json(updatedUser);
+        console.log('usuario actualizado');
+
+    } catch (error) {
+        console.log(error)
     }
 })
 
