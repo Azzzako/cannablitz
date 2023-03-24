@@ -12,7 +12,7 @@ const app = express();
 app.use(bodyParser.json());
 app.use(helmet());
 app.use(cors());
-app.use('/', routes)
+app.use('/user', routes)
 
 
 // Iniciar el servidor
