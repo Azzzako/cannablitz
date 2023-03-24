@@ -63,7 +63,8 @@
 
 .img_container>img {
     width: 100%;
-    /* position: absolute; */
+    object-fit: cover;
+    position: relative;
     /* animation: rotateBomb 2s linear infinite; */
 }
 
@@ -76,6 +77,11 @@
 
     .log_btn{
         width: 17.5ch;
+    }
+
+    .img_container>img{
+        width: 60%;
+        position: relative;
     }
     
 }
