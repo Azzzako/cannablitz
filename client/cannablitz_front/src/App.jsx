@@ -1,5 +1,5 @@
 import './App.css'
-import { Login } from './components/Login/Login'
+import { LoginRegScreen } from './components/Login/LogRegScreen'
 
 
 
@@ -8,7 +8,7 @@ function App() {
 
   return (
     <div className="App">
-      <Login/>
+      <LoginRegScreen/>
     </div>
   )
 }

@@ -66,3 +66,16 @@
     /* position: absolute; */
     /* animation: rotateBomb 2s linear infinite; */
 }
+
+.log_btn{
+    width: 7.1%;
+    font-family: var(--font-loggin);
+}
+
+@media (max-width: 960px){
+
+    .log_btn{
+        width: 17.5ch;
+    }
+    
+}
