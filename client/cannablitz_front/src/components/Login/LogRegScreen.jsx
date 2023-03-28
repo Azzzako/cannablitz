@@ -1,7 +1,4 @@
 import React, { useState } from "react";
-import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
-import imgLogo from '../../assets/CANNABLITZ.png'
 import { Button, Stack } from "@mui/material";
 import './Login.css'
 import { Register } from "./Register";
@@ -33,7 +30,7 @@ export const LoginRegScreen = () => {
 
 
 
-    console.log(componentView);
+    // console.log(componentView);
     return (
         <div className="loggin-box">
 

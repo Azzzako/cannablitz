@@ -1,15 +1,21 @@
 import './App.css'
+import React from 'react';
 import { LoginRegScreen } from './components/Login/LogRegScreen'
+import { Route, Routes } from 'react-router-dom';
 
 
 
 function App() {
-  
+
 
   return (
-    <div className="App">
-      <LoginRegScreen/>
-    </div>
+    <React.Fragment>
+     
+      <Routes>
+        <Route exact path='/login' element={<LoginRegScreen/>}/>
+      </Routes>
+     
+    </React.Fragment>
   )
 }
 

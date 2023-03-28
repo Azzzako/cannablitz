@@ -1,21 +1,32 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import imgLogo from '../../assets/CANNABLITZ.png'
 import { Button, Checkbox, FormControlLabel } from "@mui/material";
 import './Login.css'
-import { useDispatch } from "react-redux";
-import { saveNewUser } from "../../redux/Actions/actions";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllUsers, saveNewUser } from "../../redux/Actions/actions";
+import { useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
+import { Loader } from "../Loader/Loader";
+
 
 export const Register = () => {
 
     const [isChecked, setIsChecked] = useState(false)
-
+    const [loader, setLoader] = useState(false)
+    const userList = useSelector(state => state.userList)
     const [newUser, setNewUser] = useState({})
     const dispatch = useDispatch()
+    const navigate = useNavigate()
 
-    const newUserRegister = (e) => {
+
+    useEffect(() => {
+        dispatch(getAllUsers())
+    }, [])
+
+
+    const newUserRegister = async (e) => {
         e.preventDefault();
 
         if (!newUser.firstName || !newUser.lastName || !newUser.email || !newUser.password) {
@@ -35,22 +46,41 @@ export const Register = () => {
                     text: 'La dirección de correo electrónico no es válida'
                 });
             } else {
-                dispatch(saveNewUser(newUser));
-                setNewUser({
-                    firstName: '',
-                    lastName: '',
-                    email: '',
-                    password: ''
-                });
 
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Éxito',
-                    text: 'El usuario se registró correctamente'
-                });
+                const emailExist = userList.find((user) => user.email === newUser.email)
+                if (emailExist) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: 'Este correo electrónico ya está en uso'
+                    });
+                } else {
+                    dispatch(saveNewUser(newUser));
+                    setNewUser({
+                        firstName: '',
+                        lastName: '',
+                        email: '',
+                        password: ''
+                    });
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Éxito',
+                        text: 'El usuario se registró correctamente'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            setLoader(true)
+                            setTimeout(() => {
+                                setLoader(false)
+                                navigate('/home')
+                            }, 3000)
+                        }
+                    })
+                }
+
             }
         }
     };
+
 
     const infoUser = (e) => {
         e.preventDefault()
@@ -94,7 +124,6 @@ export const Register = () => {
                 className="text_box"
                 required
                 autoComplete="lastName"
-                id="outlined-required"
                 label="Apellido"
                 variant="standard"
                 name="lastName"
@@ -105,7 +134,6 @@ export const Register = () => {
                 onChange={infoUser}
                 className="text_box"
                 required
-                id="outlined-required"
                 label="Email"
                 variant="standard"
                 name="email"
@@ -117,14 +145,12 @@ export const Register = () => {
                 onChange={infoUser}
                 className="text_box"
                 required
-                id="outlined-required"
                 label="Contraseña"
                 type="password"
                 autoComplete="password"
                 variant="standard"
                 name="password"
                 value={newUser.password}
-
             />
             <FormControlLabel
                 control={<Checkbox defaultChecked={isChecked} onChange={() => setIsChecked(!isChecked)} />} label="Confirmo que soy mayor de 18 años" />
@@ -134,6 +160,7 @@ export const Register = () => {
             >
                 Crear cuenta
             </Button>
+           {loader ? <div className="loader_container"><Loader/></div> : null }
         </Box>
     )
 }

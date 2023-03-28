@@ -1,23 +1,53 @@
 const express = require('express')
 const bcrypt = require('bcrypt')
 const router = express.Router()
-const User = require('../models/UserModel') 
+const User = require('../models/UserModel')
+const nodemailer = require('nodemailer')
 
+const transporter = nodemailer.createTransport({
+    service: 'mailgun',
+    auth: {
+        user: 'postmaster@sandbox26d3a01b56ac4b049a8b6161b5c2c28b.mailgun.org',
+        pass: '99fb1477a2f167e3c1068241f089da8a-d51642fa-ed5dc273'
+    }
+})
 
 router.post('/', async (req, res) => {
-    try {
+    try { 
         const { firstName, lastName, email, password } = req.body
+        const emailInUse = await User.findOne({ where: { email: email } })
+        if (emailInUse) {
+            console.log('email ocupado papu');
+            return res.status(400).json({ msg: 'email ocupado por otro usuario' })
+        }
+
+
         const saltRounds = 10;
         const passwordCreate = await bcrypt.hash(password, saltRounds)
         const newUser = await User.create({ firstName, lastName, email, passwordCreate })
         res.status(201).json(newUser)
         console.log('usuario creado');
+
+        // const mailOptions = {
+        //     from: 'awfkgaming@gmail.com',
+        //     to: email, 
+        //     subject: 'Bienvenido a Cannablitz',
+        //     text: `Hola ${firstName}, acabas de registrarte en Cannablitz`
+        // }
+
+        // transporter.sendMail(mailOptions, (error, info) => {
+        //     if (error) console.log(error);
+        //     else console.log('correo electronico enviado: ' + info.response);
+        // })
+
+
     } catch (error) {
         console.log(error);
         res.status(500).json({ msg: 'RIP' })
     }
 })
 
+ 
 router.get('/', async (req, res) => {
     try {
         const users = await User.findAllUsers()
@@ -26,6 +56,8 @@ router.get('/', async (req, res) => {
         console.log(error);
     }
 })
+
+
 
 router.get('/:id', async (req, res) => {
     try {
