@@ -3,12 +3,15 @@ const bcrypt = require('bcrypt')
 const router = express.Router()
 const User = require('../models/UserModel')
 const nodemailer = require('nodemailer')
+const dotenv = require('dotenv');
+dotenv.config()
+
 
 const transporter = nodemailer.createTransport({
     service: 'mailgun',
     auth: {
-        user: 'postmaster@sandbox26d3a01b56ac4b049a8b6161b5c2c28b.mailgun.org',
-        pass: '99fb1477a2f167e3c1068241f089da8a-d51642fa-ed5dc273'
+        user: process.env.MAILGUN_USERNAME,
+        pass: process.env.MAILGUN_PASS
     }
 })
 
@@ -28,17 +31,17 @@ router.post('/', async (req, res) => {
         res.status(201).json(newUser)
         console.log('usuario creado');
 
-        // const mailOptions = {
-        //     from: 'awfkgaming@gmail.com',
-        //     to: email, 
-        //     subject: 'Bienvenido a Cannablitz',
-        //     text: `Hola ${firstName}, acabas de registrarte en Cannablitz`
-        // }
+        const mailOptions = {
+            from: 'awfkgaming@gmail.com',
+            to: email, 
+            subject: 'Bienvenido a Cannablitz',
+            text: `Hola ${firstName}, acabas de registrarte en Cannablitz`
+        }
 
-        // transporter.sendMail(mailOptions, (error, info) => {
-        //     if (error) console.log(error);
-        //     else console.log('correo electronico enviado: ' + info.response);
-        // })
+        transporter.sendMail(mailOptions, (error, info) => {
+            if (error) console.log(error);
+            else console.log('correo electronico enviado: ' + info.response);
+        })
 
 
     } catch (error) {
