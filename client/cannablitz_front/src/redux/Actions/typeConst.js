@@ -1,0 +1,11 @@
+
+//New user constants
+export const NEW_USER = 'NEW_USER'
+export const NEW_USER_ERROR = 'NEW_USER_ERROR'
+export const ALL_USERS = 'ALL_USERS'
+
+
+//auth user constants
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
+export const LOGIN_ERROR = 'LOGIN_ERROR'
+export const LOGOUT = 'LOGOUT'

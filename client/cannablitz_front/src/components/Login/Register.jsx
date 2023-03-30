@@ -15,7 +15,7 @@ export const Register = () => {
 
     const [isChecked, setIsChecked] = useState(false)
     const [loader, setLoader] = useState(false)
-    const userList = useSelector(state => state.userList)
+    const userList = useSelector(state => state.save.userList)
     const [newUser, setNewUser] = useState({})
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -49,34 +49,42 @@ export const Register = () => {
 
                 const emailExist = userList.find((user) => user.email === newUser.email)
                 if (emailExist) {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Error',
-                        text: 'Este correo electrónico ya está en uso'
-                    });
+                    setLoader(true)
+                    setTimeout(() => {
+                        setLoader(false)
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error',
+                            text: 'Este correo electrónico ya está en uso'
+                        });
+                    }, 2000)
+                    
                 } else {
                     dispatch(saveNewUser(newUser));
+                    setLoader(true)
                     setNewUser({
                         firstName: '',
                         lastName: '',
                         email: '',
                         password: ''
-                    });
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Éxito',
-                        text: 'El usuario se registró correctamente'
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            setLoader(true)
-                            setTimeout(() => {
-                                setLoader(false)
-                                navigate('/home')
-                            }, 3000)
-                        }
-                    })
+                    });setTimeout(() => {
+                        setLoader(false)
+                        navigate('/home')
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Éxito',
+                            text: 'El usuario se registró correctamente'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                setLoader(true)
+                                setTimeout(() => {
+                                    setLoader(false)
+                                    navigate('/home')
+                                }, 2000)
+                            }
+                        })
+                    }, 2000)
                 }
-
             }
         }
     };
@@ -160,7 +168,7 @@ export const Register = () => {
             >
                 Crear cuenta
             </Button>
-           {loader ? <div className="loader_container"><Loader/></div> : null }
+            {loader ? <div className="loader_container"><Loader /></div> : null}
         </Box>
     )
 }

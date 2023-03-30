@@ -1,7 +1,5 @@
 import axios from 'axios'
-export const NEW_USER = 'NEW_USER'
-export const NEW_USER_ERROR = 'NEW_USER_ERROR'
-export const ALL_USERS = 'ALL_USERS'
+import { NEW_USER, NEW_USER_ERROR, ALL_USERS } from './typeConst'
 
 
 export const saveNewUser = (user) => {

@@ -42,8 +42,6 @@ router.post('/', async (req, res) => {
             if (error) console.log(error);
             else console.log('correo electronico enviado: ' + info.response);
         })
-
-
     } catch (error) {
         console.log(error);
         res.status(500).json({ msg: 'RIP' })

@@ -1,4 +1,5 @@
-import { ALL_USERS, NEW_USER_ERROR } from "./Actions/actions";
+import { NEW_USER, NEW_USER_ERROR, ALL_USERS } from './Actions/typeConst'
+
 
 const initialState = {
     error: null,
@@ -6,7 +7,7 @@ const initialState = {
 }
 
 
-const rootReducer = (state = initialState, action) => {
+const saveUserReducer = (state = initialState, action) => {
 
     switch (action.type) {
         case NEW_USER_ERROR:
@@ -27,4 +28,4 @@ const rootReducer = (state = initialState, action) => {
 
 }
 
-export default rootReducer;
+export default saveUserReducer;
