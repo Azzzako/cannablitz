@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import imgLogo from '../../assets/CANNABLITZ.png'
@@ -7,11 +7,14 @@ import './Login.css'
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../redux/Actions/authActions";
 import { useNavigate } from "react-router-dom";
+import { Loader } from "../Loader/Loader";
+import Swal from "sweetalert2";
 
 
 export const Login = () => {
 
     const [loginUser, setLoginUser] = useState({})
+    const [loader, setLoader] = useState(false)
     const userLoged = useSelector(state => state.auth)
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -26,12 +29,40 @@ export const Login = () => {
 
 
 
-    const tryLogin = async () => {
-        dispatch(login(loginUser)).then(() => {
-            if(userLoged.isLoggedIn) navigate('/home');
-          });
+    useEffect(() => {
+        if (userLoged.isLoggedIn) {
+            setLoader(true)
+            setTimeout(() => {
+                setLoader(false)
+                navigate('/home')
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Logged In',
+                    text: 'Welcome',
+                })
+            }, 2000)
+        }
+        if (userLoged.error) {
+            setLoader(true)
+            setTimeout(() => {
+                setLoader(false)
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Usuario o contrasena incorrectos',
+                    text: 'Opps...',
+                })
+            }, 2000)
+        }
+    }, [userLoged])
+
+    const tryLogin = (e) => {
+        e.preventDefault()
+        dispatch(login(loginUser))
     }
-    
+
+
+
+
     console.log(userLoged)
 
     return (
@@ -77,8 +108,10 @@ export const Login = () => {
             />
 
             <Button variant="contained" color="success" style={{ margin: '0 auto 10px', width: '37ch' }}
-            onClick={tryLogin}
+                onClick={tryLogin}
             >Entrar</Button>
+            {loader ? <div className="loader_container"><Loader /></div> : null}
         </Box>
     )
 }
+
