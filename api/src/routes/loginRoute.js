@@ -10,7 +10,7 @@ login.post('/', async (req, res) => {
         if (!userLogin) {
             res.status(401).json({ msg: 'Usuario invalidos' })
         }
-
+        
         bcrypt.compare(password, userLogin.passwordCreate, (err, result) => {
             if (err) {
                 return res.status(500).json({ msg: 'Internal Server Error' })

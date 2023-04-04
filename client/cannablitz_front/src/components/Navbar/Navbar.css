@@ -1,0 +1,16 @@
+.nav_container{
+    background-color: #FE8A02;
+    display: flex;
+    padding: 10px;
+}
+
+.logo_nav{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+}
+.img_logo{
+    width: 40px;
+}

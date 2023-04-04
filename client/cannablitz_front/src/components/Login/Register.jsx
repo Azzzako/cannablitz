@@ -11,7 +11,7 @@ import Swal from 'sweetalert2'
 import { Loader } from "../Loader/Loader";
 
 
-export const Register = () => {
+export const Register = ({ setComponentView }) => {
 
     const [isChecked, setIsChecked] = useState(false)
     const [loader, setLoader] = useState(false)
@@ -58,7 +58,7 @@ export const Register = () => {
                             text: 'Este correo electrónico ya está en uso'
                         });
                     }, 2000)
-                    
+
                 } else {
                     dispatch(saveNewUser(newUser));
                     setLoader(true)
@@ -67,19 +67,24 @@ export const Register = () => {
                         lastName: '',
                         email: '',
                         password: ''
-                    });setTimeout(() => {
+                    });
+                    setTimeout(() => {
                         setLoader(false)
-                        navigate('/home')
                         Swal.fire({
                             icon: 'success',
                             title: 'Éxito',
-                            text: 'El usuario se registró correctamente'
+                            text: 'Gracias por registrarte en Cannablitz, ya puedes iniciar sesion'
                         }).then((result) => {
                             if (result.isConfirmed) {
                                 setLoader(true)
+                                setComponentView({
+                                    type: 'login',
+                                    disabledLogin: false,
+                                    disabledRegister: true
+                                })
                                 setTimeout(() => {
                                     setLoader(false)
-                                    navigate('/home')
+                                    navigate('/login')
                                 }, 2000)
                             }
                         })
@@ -103,7 +108,7 @@ export const Register = () => {
         <Box
             component="form"
             sx={{
-                '& .MuiTextField-root': { m: 3, width: '35ch' },
+                '& .MuiTextField-root': { m: 2, width: '35ch' },
                 display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'
             }}
             noValidate
