@@ -16,3 +16,10 @@ export const login = (userTryLogin) => async (dispatch) => {
         })
     }
 }
+
+
+export const logout = () => async (dispatch) => {
+   await dispatch({
+        type: LOGOUT
+    });
+}

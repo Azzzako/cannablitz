@@ -62,9 +62,6 @@ export const Login = () => {
 
 
 
-
-    console.log(userLoged)
-
     return (
         <Box
             component="form"

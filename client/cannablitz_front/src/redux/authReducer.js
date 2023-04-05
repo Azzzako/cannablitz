@@ -10,6 +10,12 @@ const authReducer = (state = initialState, action) => {
 
     switch (action.type) {
         case LOGIN_SUCCESS:
+            // Guarda el estado en localStorage
+            localStorage.setItem('authState', JSON.stringify({
+                isLoggedIn: true,
+                user: action.payload,
+                error: null
+            }));
             return {
                 ...state,
                 isLoggedIn: true,
@@ -17,6 +23,12 @@ const authReducer = (state = initialState, action) => {
                 error: null
             }
         case LOGIN_ERROR:
+            // Guarda el estado en localStorage
+            localStorage.setItem('authState', JSON.stringify({
+                isLoggedIn: false,
+                user: null,
+                error: action.payload
+            }));
             return {
                 ...state,
                 isLoggedIn: false,
@@ -24,6 +36,8 @@ const authReducer = (state = initialState, action) => {
                 error: action.payload
             }
         case LOGOUT:
+            // Borra el estado de localStorage
+            localStorage.removeItem('authState');
             return {
                 ...state,
                 isLoggedIn: false,
