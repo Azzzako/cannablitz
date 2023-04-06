@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import { logout } from "../../redux/Actions/authActions";
 import { useNavigate } from "react-router-dom";
 import { FiLogOut } from 'react-icons/fi'
+import { FiUser } from 'react-icons/fi'
 
 export const Navbar = () => {
     const navigate = useNavigate()
@@ -34,14 +35,17 @@ export const Navbar = () => {
                     <img src={imgLogo} alt="cannablitz" className="img_logo" />
                     <h1>CANNABLITZ</h1>
                 </div>
-                
+
                 <div className="icons_user">
-                    {user?.isLoggedIn ? 
-                    <div onClick={logOut} className="icon_out"><FiLogOut/></div> 
-                    : 
-                    <div><h1>LogIn</h1></div>}
+                    {user?.isLoggedIn ?
+                        <div className="icons">
+                            <div className="user_icon"><FiUser /></div>
+                            <div className="logout_icon" onClick={logOut}><FiLogOut /></div>
+                        </div>
+                        :
+                        <div><h1>LogIn</h1></div>}
                 </div>
-                
+
 
 
             </nav>
