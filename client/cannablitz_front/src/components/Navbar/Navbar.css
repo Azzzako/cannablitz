@@ -21,10 +21,23 @@
     padding: 40px;
 }
 
+@keyframes rotateBomb {
+    0% {
+        transform: rotate(60deg);
+    }
+    50% {
+        transform: rotate(50deg);
+    }
+    100%{
+        transform: rotate(60deg);
+    }
+}
+
 .logo_nav>img{
     width: 48px;
     object-fit: contain;
-    transform: rotate(20deg);
+    /* transform: rotate(90deg); */
+    animation: rotateBomb infinite 2s;
 }
 
 .logo_nav>h1{
@@ -44,10 +57,10 @@
     gap: 20px;
     font-size: 34px;
     padding-right: 20px;
+    cursor: pointer;
 }
 
 .user_icon{
-    cursor: pointer;
     transition: 0.5s all ease;
 }
 .user_icon:hover{
@@ -55,7 +68,6 @@
 }
 
 .logout_icon{
-    cursor: pointer;
     transition: 0.5s all ease;
 }
 
@@ -63,6 +75,10 @@
     color: white;
 }
 
+.login_icon{
+    font-size: 34px;
+    cursor: pointer;
+}
 
 .submenu{
     display: flex;
