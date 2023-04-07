@@ -49,6 +49,16 @@ export const Navbar = () => {
 
 
             </nav>
+
+            <nav>
+                    <div>
+                        <ul className="submenu">
+                            <li>Inicio</li>
+                            <li>Tienda</li>
+                            <li>Categorias</li>
+                        </ul>
+                    </div>
+            </nav>
         </React.Fragment>
     )
 }

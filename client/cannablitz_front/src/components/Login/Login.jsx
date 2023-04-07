@@ -6,7 +6,7 @@ import { Button } from "@mui/material";
 import './Login.css'
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../redux/Actions/authActions";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Loader } from "../Loader/Loader";
 import Swal from "sweetalert2";
 
@@ -34,7 +34,7 @@ export const Login = () => {
             setLoader(true)
             setTimeout(() => {
                 setLoader(false)
-                navigate('/home')
+                navigate('/')
                 Swal.fire({
                     icon: 'success',
                     title: 'Logged In',
