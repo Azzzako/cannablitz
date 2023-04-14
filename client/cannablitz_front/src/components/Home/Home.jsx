@@ -2,8 +2,8 @@ import React from "react";
 
 export const Home = () => {
     return (
-        <>
-            <h1>Este es el componente HOME y estamos dispuestos a usarlo</h1>
-        </>
+        <React.Fragment>
+            <h1></h1>
+        </React.Fragment>
     )
 }

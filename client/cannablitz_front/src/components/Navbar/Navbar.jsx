@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import './Navbar.css'
 import imgLogo from '../../assets/CANNABLITZ.png'
 import { useDispatch } from "react-redux";
-import { login, logout } from "../../redux/Actions/authActions";
+import { logout } from "../../redux/Actions/authActions";
 import { useNavigate } from "react-router-dom";
 import { FiLogOut } from 'react-icons/fi'
 import { FiUserCheck, FiShoppingCart } from 'react-icons/fi'
@@ -18,7 +18,6 @@ export const Navbar = () => {
 
 
     const logOut = () => {
-
         setLoader(true)
         setTimeout(() => {
             setLoader(false)
