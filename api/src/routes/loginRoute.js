@@ -24,6 +24,7 @@ login.post('/', async (req, res) => {
             res.status(200).json({
                 email: userLogin.email,
                 name: `${userLogin.firstName} ${userLogin.lastName}`, 
+                role: userLogin.role
             })
             return console.log('logeado papu')
 

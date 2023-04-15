@@ -7,6 +7,7 @@ import { Navbar } from './components/Navbar/Navbar';
 
 
 
+
 function App() {
   const location = useLocation();
 
@@ -15,10 +16,9 @@ function App() {
     <React.Fragment>
       {location.pathname !== '/login' && <Navbar />}
       <Routes>
-        <Route path='/login' element={<LoginRegScreen/>}/>
-        <Route exact path='/' element={<Home/>}/>
+        <Route path='/login' element={<LoginRegScreen />} />
+        <Route exact path='/' element={<Home />} />
       </Routes>
-     
     </React.Fragment>
   )
 }

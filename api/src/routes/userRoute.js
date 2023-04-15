@@ -16,7 +16,7 @@ const transporter = nodemailer.createTransport({
 })
 
 router.post('/', async (req, res) => {
-    try { 
+    try {
         const { firstName, lastName, email, password } = req.body
         const emailInUse = await User.findOne({ where: { email: email } })
         if (emailInUse) {
@@ -27,13 +27,20 @@ router.post('/', async (req, res) => {
 
         const saltRounds = 10;
         const passwordCreate = await bcrypt.hash(password, saltRounds)
-        const newUser = await User.create({ firstName, lastName, email, passwordCreate })
-        res.status(201).json(newUser)
-        console.log('usuario creado');
+
+        if (email === 'zanduva@gmail.com') {
+            const userAdmin = await User.create({ firstName, lastName, email, passwordCreate, role: 'admin' })
+            res.status(200).json({ msg: 'administrador create', userAdmin })
+        } else {
+            const newUser = await User.create({ firstName, lastName, email, passwordCreate, role: 'user' })
+            res.status(201).json({msg: 'usuario create', newUser})
+            console.log('usuario creado');
+        }
+
 
         const mailOptions = {
             from: 'awfkgaming@gmail.com',
-            to: email, 
+            to: email,
             subject: 'Bienvenido a Cannablitz',
             text: `Hola ${firstName}, acabas de registrarte en Cannablitz`
         }
@@ -48,7 +55,7 @@ router.post('/', async (req, res) => {
     }
 })
 
- 
+
 router.get('/', async (req, res) => {
     try {
         const users = await User.findAllUsers()
