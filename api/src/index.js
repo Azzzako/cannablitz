@@ -5,7 +5,20 @@ const cors = require('cors');
 const routes = require('./routes/userRoute')
 const login = require('./routes/loginRoute')
 const sequelize = require('./database')
+const cloudinary = require('cloudinary').v2
+const dotenv = require('dotenv');
+const product = require('./routes/productRoute');
 
+
+dotenv.config();
+
+
+//Configuracion de Cloudinary para almacenar imagenes de los productos
+cloudinary.config({
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.CLOUD_API_KEY,
+  api_secret: process.env.CLOUD_API_SECRET
+})
 
 
 // Configuración del servidor Express
@@ -15,6 +28,7 @@ app.use(helmet());
 app.use(cors());
 app.use('/user', routes)
 app.use('/login', login)
+app.use('/product', product)
 
 
 // Iniciar el servidor

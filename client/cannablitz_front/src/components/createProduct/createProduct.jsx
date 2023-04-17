@@ -1,9 +1,11 @@
 import React from "react";
 
-export const Home = () => {
+export const CreateProduct = () => {
+
+
     return (
         <React.Fragment>
-            <h1>hola</h1>
+            
         </React.Fragment>
     )
 }
