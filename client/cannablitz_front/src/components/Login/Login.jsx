@@ -6,7 +6,7 @@ import { Button } from "@mui/material";
 import './Login.css'
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../redux/Actions/authActions";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Loader } from "../Loader/Loader";
 import Swal from "sweetalert2";
 

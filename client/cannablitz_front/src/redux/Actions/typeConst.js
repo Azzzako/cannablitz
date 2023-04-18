@@ -9,3 +9,8 @@ export const ALL_USERS = 'ALL_USERS'
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
 export const LOGIN_ERROR = 'LOGIN_ERROR'
 export const LOGOUT = 'LOGOUT'
+
+
+//product constants
+export const NEW_PRODUCT = 'NEW_PRODUCT'
+export const GET_ALL_PRODUCTS = 'GET_ALL_PRODUCTS'

@@ -5,7 +5,7 @@ import imgLogo from '../../assets/CANNABLITZ.png'
 import { Button, Checkbox, FormControlLabel } from "@mui/material";
 import './Login.css'
 import { useDispatch, useSelector } from "react-redux";
-import { getAllUsers, saveNewUser } from "../../redux/Actions/actions";
+import { getAllUsers, saveNewUser } from "../../redux/Actions/userActions";
 import { useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
 import { Loader } from "../Loader/Loader";

@@ -59,9 +59,14 @@ export const Navbar = () => {
                         </div>
 
                     }
-                    {loader ? <div><Loader /></div> : null}
-                </div>
+                    {
+                        loader ?
+                            <div><Loader /></div>
+                            :
+                            null
+                    }
 
+                </div>
 
 
             </nav>
