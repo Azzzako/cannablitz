@@ -1,0 +1,12 @@
+.form_container{
+    margin: 90px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+@media (max-width:960px) {
+    .form_container{
+        margin: 30px;
+    }
+}
