@@ -1,9 +1,10 @@
 import React from "react";
+import { CreateProduct } from "../createProduct/createProduct";
 
 export const Dashboard = () => {
     return(
         <React.Fragment>
-            <h1>Hola pendejos</h1>
+            <CreateProduct/>
         </React.Fragment>
     )
 }

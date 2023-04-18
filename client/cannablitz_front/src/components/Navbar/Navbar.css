@@ -106,3 +106,16 @@
 .submenu>li:hover{
     color: white;
 }
+
+
+.dashboard_btn{
+    font-size: 30px;
+    text-decoration: none;
+    transition: 0.5s all ease;
+    font-family: var(--font-loggin);
+    letter-spacing: 2px;
+}
+
+.dashboard_btn:hover{
+    color: white;
+}

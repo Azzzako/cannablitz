@@ -3,16 +3,18 @@ import axios from "axios";
 
 export const saveNewProduct = (newProduct) => async (dispatch) => {
     try {
-        const response = await axios.post('http://localhost:3001/product', newProduct)
+        const config = {
+            headers: {
+                'content-type': 'multipart/form-data'
+            }
+        };
+        const response = await axios.post('http://localhost:3001/product', newProduct, config)
         dispatch({
             type: NEW_PRODUCT,
             payload: response.data
         })
     } catch (error) {
-        dispatch({
-            type: LOGIN_ERROR,
-            payload: error.response.data.msg
-        })
+        console.log(error);
     }
 }
 

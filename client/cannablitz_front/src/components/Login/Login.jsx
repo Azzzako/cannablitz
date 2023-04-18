@@ -35,11 +35,6 @@ export const Login = () => {
             setTimeout(() => {
                 setLoader(false)
                 navigate('/')
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Logged In',
-                    text: 'Welcome',
-                })
             }, 2000)
         }
         if (userLoged.error) {
