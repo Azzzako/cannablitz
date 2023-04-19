@@ -1,10 +1,19 @@
 import React from "react";
+import './Dashboard.css'
 import { CreateProduct } from "../createProduct/createProduct";
+import { AdminNavbar } from "../AdminNavbar/AdminNavbar";
 
 export const Dashboard = () => {
-    return(
+    return (
         <React.Fragment>
-            <CreateProduct/>
+            <div className="gral_dash">
+                <div>
+                    <AdminNavbar />
+                </div>
+                
+                <CreateProduct />
+            </div>
+
         </React.Fragment>
     )
 }

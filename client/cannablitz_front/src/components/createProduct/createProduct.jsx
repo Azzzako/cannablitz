@@ -70,12 +70,22 @@ export const CreateProduct = () => {
                     onChange={handleOnChange}
                 />
 
+                <TextField
+                    color={newProduct?.stock?.length > 0 ? 'success' : 'error'}
+                    id="outlined-basic"
+                    label='Product Stock'
+                    type="number"
+                    value={newProduct.stock}
+                    name="stock"
+                    onChange={handleOnChange}
+                />
+
                 <TextareaAutosize
                     placeholder="Product Description"
                     value={newProduct.description}
                     name="description"
                     onChange={handleOnChange}
-                    
+                    style={{ height: 200 }}
                 />
 
                 <input
@@ -84,8 +94,8 @@ export const CreateProduct = () => {
                     onChange={handleOnChange}
                 />
                 <Button
-                variant="contained" 
-                type="submit"
+                    variant="contained"
+                    type="submit"
                 >Enviar
                 </Button>
             </Box>
