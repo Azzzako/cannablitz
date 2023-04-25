@@ -19,18 +19,19 @@ const upload = multer({ dest: 'uploads/', storage: storage })
 product.post('/', upload.single('image'), async (req, res) => {
     try {
         const result = await cloudinary.uploader.upload(req.file.path)
-        const { name, price, description, stock } = req.body
+        const { name, price, description, category, stock } = req.body
 
         const newProduct = await Product.create({
             name,
             price,
             description,
+            category,
             stock,
             image: result.secure_url
         })
 
         res.status(200).json(newProduct)
-        console.log(result);
+        console.log('Producto creado');
     } catch (error) {
         console.log(error)
         res.status(500).json({ msj: 'Internal Server Error' })

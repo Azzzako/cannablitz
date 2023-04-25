@@ -1,6 +1,5 @@
 import React from "react";
 import './Dashboard.css'
-import { CreateProduct } from "../createProduct/createProduct";
 import { AdminNavbar } from "../AdminNavbar/AdminNavbar";
 
 export const Dashboard = () => {
@@ -10,8 +9,6 @@ export const Dashboard = () => {
                 <div>
                     <AdminNavbar />
                 </div>
-                
-                <CreateProduct />
             </div>
 
         </React.Fragment>

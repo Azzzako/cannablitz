@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { saveNewProduct } from "../../redux/Actions/productActions";
+import { saveNewProduct } from "../../../redux/Actions/productActions";
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import { TextareaAutosize, Button } from "@mui/material";
 import './createProduct.css'
+import { AdminNavbar } from "../../AdminNavbar/AdminNavbar";
 
 export const CreateProduct = () => {
     const [newProduct, setNewProduct] = useState({});
@@ -35,8 +36,9 @@ export const CreateProduct = () => {
             setNewProduct({
                 name: '',
                 price: '',
+                stock: '',
                 description: '',
-                image: ''
+                image: '', 
             })
         } else {
             alert('Llena todos los campos')
@@ -48,6 +50,7 @@ export const CreateProduct = () => {
 
     return (
         <React.Fragment>
+            <AdminNavbar/>
             <Box component='form'
                 noValidate onSubmit={onSubmitProduct} className="form_container">
 
