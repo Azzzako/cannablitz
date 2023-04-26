@@ -50,7 +50,6 @@ export const CreateProduct = () => {
 
     return (
         <React.Fragment>
-            <AdminNavbar/>
             <Box component='form'
                 noValidate onSubmit={onSubmitProduct} className="form_container">
 

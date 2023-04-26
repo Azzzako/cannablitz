@@ -34,7 +34,7 @@ export const Users = () => {
     
     return (
         <React.Fragment>
-            <div style={{ height: '100vh' }}>
+            <div style={{ }}>
                 <DataGrid
                     rows={rows}
                     columns={columns}

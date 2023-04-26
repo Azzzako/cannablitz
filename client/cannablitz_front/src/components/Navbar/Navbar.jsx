@@ -15,7 +15,10 @@ export const Navbar = () => {
     const userLoged = localStorage.getItem('authState')
     const [user, setUser] = useState({})
     const [loader, setLoader] = useState(false)
-
+    const style = {
+        textDecoration: 'none',
+        color: 'black'
+    }
 
     const logOut = () => {
         setLoader(true)
@@ -88,8 +91,8 @@ export const Navbar = () => {
                         user?.user?.role === 'admin' ?
                             <ul className="submenu">
                                 <li>Ventas</li>
-                                <li>Usuarios</li>
-                                <li>Productos</li>
+                                <Link to='/dashboard/userlist' style={style}><li>Usuarios</li></Link>
+                                <Link to='/dashboard/product' style={style}><li>Productos</li></Link>
                                 <li>Tienda</li>
                             </ul>
                             :
