@@ -41,10 +41,10 @@ export const Navbar = () => {
     return (
         <React.Fragment>
             <nav className="nav_container">
-                <div className="logo_nav">
+                <Link to='/' style={{ textDecoration: 'none', color: 'black' }}><div className="logo_nav">
                     <img src={imgLogo} alt="cannablitz" className="img_logo" />
                     <h1>CANNABLITZ</h1>
-                </div>
+                </div></Link>
                 {
                     user?.user?.role !== 'admin' ?
                         <div className="icons_user">
@@ -70,7 +70,7 @@ export const Navbar = () => {
                         :
                         <div className="icons_user">
                             <div className="icons">
-                                <Link to='/dashboard' style={{textDecoration: 'none', color:'black'}}><span className="dashboard_btn">Admin</span></Link>
+                                <Link to='/dashboard' style={{ textDecoration: 'none', color: 'black' }}><span className="dashboard_btn">Admin</span></Link>
                                 <div className="logout_icon" onClick={logOut}><FiLogOut /></div>
                             </div>
 
@@ -84,11 +84,22 @@ export const Navbar = () => {
 
             <nav>
                 <div>
-                    <ul className="submenu">
-                        <li>Inicio</li>
-                        <li>Tienda</li>
-                        <li>Catego</li>
-                    </ul>
+                    {
+                        user?.user?.role === 'admin' ?
+                            <ul className="submenu">
+                                <li>Ventas</li>
+                                <li>Usuarios</li>
+                                <li>Productos</li>
+                                <li>Tienda</li>
+                            </ul>
+                            :
+                            <ul className="submenu">
+                                <li>Inicio</li>
+                                <li>Tienda</li>
+                                <li>Catego</li>
+                            </ul>
+                    }
+
                 </div>
             </nav>
         </React.Fragment>

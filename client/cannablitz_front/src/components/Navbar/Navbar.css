@@ -98,6 +98,12 @@
     background-color: #f7ad57;
 }
 
+@media (max-width:960px) {
+    .submenu{
+        font-size: 21px;
+    }
+}
+
 .submenu>li{
     transition: 0.3s all ease;
     cursor: pointer;

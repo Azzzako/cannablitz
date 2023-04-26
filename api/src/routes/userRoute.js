@@ -31,6 +31,7 @@ router.post('/', async (req, res) => {
         if (email === 'zanduva@gmail.com') {
             const userAdmin = await User.create({ firstName, lastName, email, passwordCreate, role: 'admin' })
             res.status(200).json({ msg: 'administrador create', userAdmin })
+            console.log('admin creado');
         } else {
             const newUser = await User.create({ firstName, lastName, email, passwordCreate, role: 'user' })
             res.status(201).json({msg: 'usuario create', newUser})
@@ -38,17 +39,17 @@ router.post('/', async (req, res) => {
         }
 
 
-        const mailOptions = {
-            from: 'awfkgaming@gmail.com',
-            to: email,
-            subject: 'Bienvenido a Cannablitz',
-            text: `Hola ${firstName}, acabas de registrarte en Cannablitz`
-        }
+        // const mailOptions = {
+        //     from: 'awfkgaming@gmail.com',
+        //     to: email,
+        //     subject: 'Bienvenido a Cannablitz',
+        //     text: `Hola ${firstName}, acabas de registrarte en Cannablitz`
+        // }
 
-        transporter.sendMail(mailOptions, (error, info) => {
-            if (error) console.log(error);
-            else console.log('correo electronico enviado: ' + info.response);
-        })
+        // transporter.sendMail(mailOptions, (error, info) => {
+        //     if (error) console.log(error);
+        //     else console.log('correo electronico enviado: ' + info.response);
+        // })
     } catch (error) {
         console.log(error);
         res.status(500).json({ msg: 'RIP' })

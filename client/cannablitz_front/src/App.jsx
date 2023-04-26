@@ -17,7 +17,7 @@ function App() {
 
   return (
     <React.Fragment>
-      {location.pathname !== '/login' && location.pathname !== '/dashboard' && location.pathname !== '/dashboard/product' && <Navbar />}
+      {location.pathname !== '/login' && <Navbar />}
       <Routes>
         <Route path='/login' element={<LoginRegScreen />} />
         <Route exact path='/' element={<Home />} />

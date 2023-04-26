@@ -7,7 +7,7 @@ export const Dashboard = () => {
         <React.Fragment>
             <div className="gral_dash">
                 <div>
-                    <AdminNavbar />
+                    <h1>hola cabron</h1>
                 </div>
             </div>
 
