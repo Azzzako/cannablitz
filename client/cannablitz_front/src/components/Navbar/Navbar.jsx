@@ -17,7 +17,7 @@ export const Navbar = () => {
     const [loader, setLoader] = useState(false)
     const style = {
         textDecoration: 'none',
-        color: 'black'
+        color: 'black',
     }
 
     const logOut = () => {
@@ -93,7 +93,7 @@ export const Navbar = () => {
                                 <li>Ventas</li>
                                 <Link to='/dashboard/userlist' style={style}><li>Usuarios</li></Link>
                                 <Link to='/dashboard/product' style={style}><li>Productos</li></Link>
-                                <li>Tienda</li>
+                                <Link to='/products' style={style}><li>Tienda</li></Link>
                             </ul>
                             :
                             <ul className="submenu">
