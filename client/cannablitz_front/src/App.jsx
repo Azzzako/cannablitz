@@ -7,6 +7,7 @@ import { Navbar } from './components/Navbar/Navbar';
 import { Dashboard } from './components/Dashboard/Dashboard'
 import { CreateProduct } from './components/Dashboard/createProduct/createProduct';
 import { Users } from './components/Dashboard/Users/Users';
+import { Footer } from './components/Footer/Footer';
 
 
 
@@ -25,6 +26,7 @@ function App() {
         <Route path='/dashboard/product' element={<CreateProduct />} />
         <Route path='/dashboard/userlist' element={<Users />} />
       </Routes>
+      {location.pathname !== '/login' && <Footer />}
     </React.Fragment>
   )
 }
