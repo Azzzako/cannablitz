@@ -3,9 +3,9 @@ import { useDispatch } from "react-redux";
 import { saveNewProduct } from "../../../redux/Actions/productActions";
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import { TextareaAutosize, Button } from "@mui/material";
+import { TextareaAutosize, Button, Select, MenuItem, InputLabel } from "@mui/material";
 import './createProduct.css'
-import { AdminNavbar } from "../../AdminNavbar/AdminNavbar";
+import { ProductList } from "./ProductList/ProductList";
 
 export const CreateProduct = () => {
     const [newProduct, setNewProduct] = useState({});
@@ -38,7 +38,8 @@ export const CreateProduct = () => {
                 price: '',
                 stock: '',
                 description: '',
-                image: '', 
+                image: '',
+                category: ''
             })
         } else {
             alert('Llena todos los campos')
@@ -46,10 +47,11 @@ export const CreateProduct = () => {
 
     };
 
-    console.log(newProduct);
+
 
     return (
         <React.Fragment>
+            <h1>Crear Producto</h1>
             <Box component='form'
                 noValidate onSubmit={onSubmitProduct} className="form_container">
 
@@ -61,6 +63,21 @@ export const CreateProduct = () => {
                     name="name"
                     onChange={handleOnChange}
                 />
+
+                <Select
+
+                    id="demo-simple-select-standard-label"
+                    value={newProduct.category}
+                    label='Categoria'
+                    onChange={handleOnChange}
+                    name="category"
+                >
+                    <MenuItem value="Categoria">Categoria</MenuItem>
+                    <MenuItem value='sabanas'>Sabanas</MenuItem>
+                    <MenuItem value='bongs'>Bongs</MenuItem>
+                    <MenuItem value='grinders'>Canalas</MenuItem>
+                    <MenuItem value='encendedores'>Encendedores</MenuItem>
+                </Select>
 
                 <TextField
                     color={newProduct?.price?.length > 0 ? 'success' : 'error'}
@@ -101,6 +118,8 @@ export const CreateProduct = () => {
                 >Enviar
                 </Button>
             </Box>
+
+            <ProductList />
         </React.Fragment>
     );
 };

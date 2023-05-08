@@ -38,7 +38,7 @@ export const Navbar = () => {
         setUser(JSON.parse(userLoged))
     }, [userLoged])
 
-    console.log(user);
+    
 
 
     return (
